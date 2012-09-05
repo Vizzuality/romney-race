@@ -1,0 +1,105 @@
+
+/* STYLES FOR % OF VOTES VIEW*/
+/*****************************/
+
+@font_reg:"DejaVu Sans Book";
+
+#{tablename} {
+  line-color:#FFFFFF;
+  line-width:0;
+  line-opacity:1;
+  polygon-opacity:1;
+}
+
+#{tablename}::labels[zoom>=6] {
+  text-face-name:@font_reg;
+  text-name:"[county_nam]";
+  text-fill:#FFF;
+  text-halo-fill:rgba(0,0,0,0.5);
+  text-halo-radius:1;
+  text-size:11;
+  text-allow-overlap: false;
+  polygon-opacity:0;
+  text-label-position-tolerance: 10;
+  text-min-distance: 10;
+}
+
+#{tablename} [percent_ro<=100.0]{
+   polygon-fill:#BB2D3C;
+}
+#{tablename} [percent_ro<=50]{
+   polygon-fill:#D6818A;
+}
+#{tablename} [percent_ro<=30]{
+   polygon-fill:#E4ABB1;
+}
+#{tablename} [percent_ro<=15]{
+   polygon-fill:#EAC0C4;
+}
+
+
+/* STYLES FOR WHERE ROMNEY WINS*/
+/*****************************/
+
+@font_reg:"DejaVu Sans Book";
+
+#gopprimariesrounded {
+  line-color:#594;
+  line-width:0.5;
+  polygon-opacity:1;
+  polygon-fill:#EDEDED;
+}
+
+#gopprimariesrounded {
+   line-color:#FFFFFF;
+   line-width:0;
+   line-opacity:1;
+   polygon-opacity:1;
+}
+
+#gopprimariesrounded::labels[zoom>=6][romney_win=1] {
+  text-face-name:@font_reg;
+  text-name:"[county_nam]";
+  text-fill:#FFF;
+  text-halo-fill:rgba(0,0,0,0.5);
+  text-halo-radius:1;
+  text-size:11;
+  text-allow-overlap: false;
+  polygon-opacity:0;
+  text-label-position-tolerance: 10;
+  text-min-distance: 10;
+}
+
+#gopprimariesrounded[romney_win=1] {
+   polygon-fill:#BB2D3C;
+}
+
+
+/*STYLE FOR ADM BOUNDARIES TABLE*/
+/*****************************/
+
+#{tablename}::glow {
+  line-color:#000;
+  line-opacity:.15;
+  polygon-opacity:0;
+  line-width:3;
+  [zoom>=5]{
+    line-width:5;
+  }
+  [zoom>=6]{
+    line-width:7;
+  }
+}
+
+#{tablename} {
+  line-color:#FFFFFF;
+  line-width:1.5;
+  line-opacity:1;
+  polygon-opacity:0;
+  [zoom>=5]{
+    line-width:2.5;
+  }
+  [zoom>=6]{
+    line-width:3.5;
+  }
+}
