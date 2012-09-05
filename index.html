@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Romney</title>
+
+    <link rel="stylesheet" href="http://leaflet.cloudmade.com/dist/leaflet.css" />
+    <link href="css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="css/print.css" media="print" rel="stylesheet" type="text/css" />
+
+    <style>
+      html, body, #map {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      #zoom {
+
+        background:#fff;
+        padding: 10px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+
+      }
+    </style>
+
+    <!--[if IE]>
+    <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <script src="js/vendor/cdb.js/src/cartodb.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+      cdb.load('js/vendor/cdb.js/src/', function() {
+
+        var polygon = new L.GeoJSON(null);
+        var polygon_style = {color: "#333", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#FFCC00", clickable:false};
+        
+         var vis = new Vis({el: $('#map')});
+         vis.load({
+
+           title: "visualization title",
+           description: "this is my description",
+           center: [40.044, -101.95],
+           zoom: 4,
+
+           overlays: [
+            {
+              type: 'header'
+            },
+            { 
+              type: 'zoom',
+              template: '<a class="zoom_in">+</a> <a class="zoom_out">-</a>'
+            }
+          ],
+
+          layers: [
+            {
+              type: 'cartodb',
+              user_name: 'saleiva',
+              table_name: 'gop_primaries_map_ex',
+              query: 'SELECT cartodb_id, county_nam, percent_ro, ST_SIMPLIFY(the_geom_webmercator,0.0001) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
+              interactivity: "geometry, cartodb_id",
+              featureOver: function(ev,latlng,pos,data) {
+                document.body.style.cursor = "pointer";
+
+                // Show the hover polygon if it is a different feature
+                if (data.cartodb_id != polygon.cartodb_id) {
+                  vis.mapView.map_leaflet.removeLayer(polygon);
+
+                  polygon = new L.GeoJSON(JSON.parse(data.geometry), {
+                    style: function (feature) {
+                      return polygon_style;
+                    }
+                  }).addTo(vis.mapView.map_leaflet);
+                  polygon.cartodb_id = data.cartodb_id;
+                }
+              },
+              //tile_style: "#{{table_name}}{marker-fill:red}",
+              infowindow: {
+                fields: [{ name: 'county_nam', title: true }],
+                template: '<div class="cartodb-popup"> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} {{#title}}<h4>{{title}}</h4>{{/title}} <p>{{value}}</p> {{/content.fields}} </div> </div> <div class="cartodb-popup-tip-container"> </div> </div>'
+              }
+            }
+          ]
+         });
+ 
+        window.map = vis; // to play in console
+
+});
+}
+
+    </script>
+
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
