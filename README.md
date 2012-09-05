@@ -15,3 +15,7 @@ Romney Race
 
   then use the generated <code>all.js</code> file.
 
+How to install cdb.js:
+
+        git submodule init
+        git submodule update
