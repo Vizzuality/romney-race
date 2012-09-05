@@ -1,7 +1,7 @@
 Romney Race
 ===========
 
-[https://vizzuality.github.com/romney-race](View project)
+[View project](https://vizzuality.github.com/romney-race)
 
 * This project uses compass to generate the CSS.
 * You can run a small server running the <code>asdf</code> gem:
