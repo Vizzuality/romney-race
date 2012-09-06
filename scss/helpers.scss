@@ -127,32 +127,30 @@ $cGray0:                 #000000;
 }
 
 .sans-serif {
-  font-family: "SourceSansPro-Regular", Helvetica, Arial, sans-serif;
-}
-.sans-serif-extralight {
-  font-family: "SourceSansPro-ExtraLight", Helvetica, Arial, sans-serif;
-}
-.sans-serif-light {
-  font-family: "SourceSansPro-Light", Georgia;
-}
-.sans-serif-semibold {
-  font-family: "SourceSansPro-Semibold", Helvetica, Arial, sans-serif;
+  font-family: "AdelleBasic_Bold", Helvetica, Arial, sans-serif;
 }
 .sans-serif-bold {
-  font-family: "SourceSansPro-Bold", Helvetica, Arial, sans-serif;
+  font-family: "AdelleBasic_Bold", Helvetica, Arial, sans-serif;
 }
-.sans-serif-black {
-  font-family: "SourceSansPro-Black", Helvetica, Arial, sans-serif;
+.sans-serif-bold-italic {
+  font-family: "AdelleBasic_BoldItalic", Helvetica, Arial, sans-serif;
 }
 
+
+/*
+* Set font-family, color and weight with one simply helper.
+*
+* Usage:
+*
+*   @include font("sans-serif", 20px, $cGray0);
+*   @include font("sans-serif-bold", 20px, $cGray0);
+*   @include font("sans-serif-bold-italic", 20px, $cGray0);
+*/
 @mixin font($font, $font-size, $color: false, $font-weight: false) {
 
-  @if $font == "sans-serif"            { @extend .sans-serif; }
-  @if $font == "sans-serif-extralight" { @extend .sans-serif-extralight; }
-  @if $font == "sans-serif-light"      { @extend .sans-serif-light; }
-  @if $font == "sans-serif-semibold"   { @extend .sans-serif-semibold; }
-  @if $font == "sans-serif-bold"       { @extend .sans-serif-bold; }
-  @if $font == "sans-serif-black"      { @extend .sans-serif-black; }
+  @if $font == "sans-serif"             { @extend .sans-serif; }
+  @if $font == "sans-serif-bold"        { @extend .sans-serif-bold; }
+  @if $font == "sans-serif-bold-italic" { @extend .sans-serif-bold-italic; }
 
   @if $color       != false { color: $color; }
   @if $font-size   != false { font-size: $font-size; }
