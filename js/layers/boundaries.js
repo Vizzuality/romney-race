@@ -1,10 +1,11 @@
 window.layers? null: window.layers = {};
 layers.boundaries = {
   type: 'cartodb',
+  visible: true,
   user_name: 'saleiva',
   table_name: 'usa_adm1',
   query: 'SELECT * FROM {{table_name}}',
-  tyle_style:
+  tile_style:
     "#{{table_name}}::glow {" +
     "line-color:#000;" +
     "line-opacity:.15;" +

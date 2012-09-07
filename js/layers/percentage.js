@@ -42,8 +42,7 @@ layers.percentage = {
   infowindow: {
     fields: [{ name: 'county_name', title: true },
       { name: 'state_name', title: true },
-      {name: 'romney_percentage', title: true},
-      {name: 'geometry', title: true}
+      {name: 'romney_percentage', title: true}
     ],
     template: "<div>{{#content.fields}} <div class='{{#title}}{{title}}{{/title}}' >{{value}}</div> {{/content.fields}}</div>"
   }
