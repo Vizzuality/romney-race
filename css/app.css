@@ -1,0 +1,111 @@
+body {
+  margin: 25px;
+  color: #333;
+}
+
+.leaflet-container {
+  background: #FFF;
+}
+
+.header {
+  position: relative;
+  display: inline-block;
+  padding-left: 0 ;
+  width: 100%;
+  border-bottom: 1px solid #d4d0c8;
+  background-color: #FFF;
+  font-family: "AdelleBasic_Bold";
+}
+
+.header h1 {
+  float: left;
+  display: inline-block;
+  font-size: 35px;
+}
+
+.header .tab {
+  position: relative;
+  top: 1px;
+  float: right;
+  display: inline-block;
+  padding:18px;
+  border-color: #FFF;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-radius: 5px 5px 0 0;
+  color: #0879B9;
+  font-size: 21px;
+  border-bottom-color: #d4d0c8;
+}
+
+.header .tab.selected {
+  border-color: #d4d0c8;
+  color: #333;
+  border-bottom-color: #FFF;
+}
+
+.mapTab {
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height: 500px;
+}
+
+.mapTab.shown {
+  opacity: 1;
+}
+
+.subheader {
+  width: 100%;
+  background: #FFF;
+  border-bottom: 1px solid #d4d0c8;
+  display: inline-block;
+  padding: 20px 0;
+}
+
+.subheader #zoom {
+  display: inline-block;
+}
+
+.subheader #zoom > * {
+  position: relative;
+  float: left;
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #999;
+  border-radius: 1px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  color: #999;
+  text-align: center;
+  cursor: pointer;
+}
+
+.subheader #zoom .zoom_out {
+  left:-1px;
+}
+
+.subheader .legends {
+  float: right;
+  display: inline-block;
+}
+
+.subheader .legends .legend {
+  display: none;
+}
+.subheader .legends .legend.selected {
+  display: inline-block;
+}
+
+.infowindow {
+  position: absolute;
+  bottom: 218px;
+  left: 763px;
+  display: block;
+  padding: 10px;
+  border: 1px solid #E1E1E1;
+  border-radius: 5px 5px 5px 5px;
+  background: none repeat scroll 0 0 #FFFFFF;
+}
