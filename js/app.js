@@ -2,6 +2,7 @@
 var romney = {
   minZoom: 4,
   maxZoom:9,
+  namesOn: false,
   /**
   * initialization method
   * @method init
@@ -42,6 +43,7 @@ var romney = {
     }
     $('.zoom_in').on('click', this.zoom_in.bind(this));
     $('.zoom_out').on('click', this.zoom_out.bind(this));
+    $('.show_names').on('click', this.toggleNames.bind(this))
   },
   /**
   * Toggle the selected map
@@ -104,5 +106,32 @@ var romney = {
     if(currentZoom >= this.minZoom) {
       this.map.setZoom(currentZoom - 1);
     }
+  },
+
+  setNamesOn: function() {
+    layers.win.textName = 'county_name';
+    layers.percentage.textName = 'county_name';
+    layers.win.tile_style = layers.win.getTyleStyle()
+    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
+    layers.percentage.tile_style = layers.percentage.getTyleStyle()
+    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.selectMap(this.currentMap);
+  },
+
+  setNamesOff: function() {
+    layers.win.textName = undefined;
+    layers.percentage.textName = undefined;
+    layers.win.tile_style = layers.win.getTyleStyle()
+    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
+    layers.percentage.tile_style = layers.percentage.getTyleStyle()
+    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.selectMap(this.currentMap);
+  },
+
+  toggleNames: function() {
+    this.namesOn?
+      this.setNamesOff():
+      this.setNamesOn();
+    this.namesOn = !this.namesOn;
   }
 }

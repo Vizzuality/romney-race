@@ -4,6 +4,10 @@ body {
   font-family: helvetica, arial;
 }
 
+a{
+  cursor: pointer;
+}
+
 .leaflet-container {
   background: #FFF;
 }
@@ -84,8 +88,15 @@ body {
   cursor: pointer;
 }
 
-.subheader #zoom .zoom_out {
+.subheader #zoom .zoom_in {
   left:-1px;
+}
+
+.subheader #zoom .show_names {
+  margin-left: 11px;
+  font-family: 'times-roman', 'times new roman' ;
+  font-size: 21px;
+  padding: 3px 5px 7px;
 }
 
 .subheader .legends {
@@ -101,11 +112,11 @@ body {
 }
 
 .subheader .legends .bullet {
+  display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 10px;
   background-color: #999;
-  display: inline-block;
 }
 
 .subheader .legend {
@@ -158,11 +169,11 @@ body {
   left: 763px;
   display: block;
   padding: 5px;
+  max-width: 200px;
   border: 1px solid #333;
   border-radius: 5px 5px 5px 5px;
   background: none repeat scroll 0 0 #FFFFFF;
   font-size: 13px;
-  max-width: 200px;
 }
 
 .infowindow .romney_percentage {
