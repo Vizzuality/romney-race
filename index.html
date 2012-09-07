@@ -35,11 +35,15 @@
 
     <script type="text/javascript">
       var mapConfig = {
-       title: "Romney race",
-       center: [40.044, -101.95],
-       zoom: 4,
-       overlays: [],
-      layers: []
+        title: "Romney race",
+        center: [40.044, -101.95],
+        bounding_box_sw: [20, -140],
+        bounding_box_ne: [ 55, -50],
+        zoom: 4,
+        maxZoom: 9,
+        minZoom: 4,
+        overlays: [],
+        layers: []
      };
       window.popup = new L.CartoDBPopup();
 
@@ -75,11 +79,30 @@
         <a class="zoom_out">-</a>
       </div>
       <div class="legends">
-          <div class="legend" data-mapId=0>
-            legenddddddd
-          </div>
           <div class="legend selected" data-mapId=1>
-            dary!
+            <div class="item" id="per50">
+              <div class="bullet"></div>
+              Romney wins (+50%)
+            </div>
+            <div class="item" id="per30">
+              <div class="bullet"></div>
+              More than 30%
+            </div>
+            <div class="item" id="per15">
+              <div class="bullet"></div>
+              More than 15%
+            </div>
+            <div class="item" id="per0">
+              <div class="bullet"></div>
+              Less than 15%
+            </div>
+          </div>
+
+          <div class="legend" data-mapId=0>
+            <div class="item" id="winLegend">
+              <div class="bullet"></div>
+                Romney wins vs other candidates
+            </div>
           </div>
       </div>
     </div>

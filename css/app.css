@@ -1,6 +1,7 @@
 body {
   margin: 25px;
   color: #333;
+  font-family: helvetica, arial;
 }
 
 .leaflet-container {
@@ -47,7 +48,7 @@ body {
 .mapTab {
   margin: 0;
   padding: 0;
-  width:100%;
+  width:800px;
   height: 500px;
 }
 
@@ -56,11 +57,11 @@ body {
 }
 
 .subheader {
-  width: 100%;
-  background: #FFF;
-  border-bottom: 1px solid #d4d0c8;
   display: inline-block;
   padding: 20px 0;
+  width: 100%;
+  border-bottom: 1px solid #d4d0c8;
+  background: #FFF;
 }
 
 .subheader #zoom {
@@ -99,13 +100,82 @@ body {
   display: inline-block;
 }
 
+.subheader .legends .bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #999;
+  display: inline-block;
+}
+
+.subheader .legend {
+  display: inline-block;
+}
+
+.subheader .legends .legend .item {
+  display: inline-block;
+  margin-left:15px;
+}
+
+#per50 .bullet{
+  background-color: #bb2d3c;
+}
+#per50 {
+  color: #666;
+}
+
+#per30 .bullet{
+  background-color: #d6818a;
+}
+#per30 {
+  color: #999;
+}
+
+#per15 .bullet{
+  background-color: #e4abb1;
+}
+#per15 {
+  color: #999;
+}
+
+#per0 .bullet{
+  background-color: #eac0c4;
+}
+#per0 {
+  color: #999;
+}
+
+#winLegend .bullet {
+  background-color: #bb2d3c;
+}
+#winLegend {
+  color: #666;
+}
+
 .infowindow {
   position: absolute;
   bottom: 218px;
   left: 763px;
   display: block;
-  padding: 10px;
-  border: 1px solid #E1E1E1;
+  padding: 5px;
+  border: 1px solid #333;
   border-radius: 5px 5px 5px 5px;
   background: none repeat scroll 0 0 #FFFFFF;
+  font-size: 13px;
+}
+
+.infowindow .romney_percentage {
+  color: #BA2B3B;
+}
+
+.infowindow .romney_percentage:after {
+  content: "% of votes";
+}
+
+.infowindow .county_name {
+  color: #333;
+}
+
+.infowindow .state_name {
+  color: #999;
 }
