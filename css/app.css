@@ -206,7 +206,7 @@ a{
   font-size: 13px;
 }
 
-.infowindow .romney_percentage {
+.infowindow .romney_percentage, .infowindow .noData {
   color: #BA2B3B;
 }
 
@@ -220,4 +220,13 @@ a{
 
 .infowindow .state_name {
   color: #999;
+}
+
+.footer {
+  border-top: 1px solid #CCC;
+  padding-top: 1em;
+}
+
+.leaflet-control-container {
+  opacity: 0.4;
 }

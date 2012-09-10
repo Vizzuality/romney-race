@@ -63,7 +63,7 @@ layers.percentage = {
       { name: 'state_name', title: true },
       {name: 'romney_percentage', title: true}
     ],
-    template: "<div><% _.each(content.fields, function(f){ if(f.value != undefined){ %> <div class='<%= f.title %>'><%= f.value %></div><%} }) %></div>",
+    template: "<div><% _.each(content.fields, function(f){%> <% if(f.value != undefined){ %> <div class='<%= f.title %>'> <%= f.value %> </div> <% } else { %> <div class='noData'> No data </div> <% } %> <% }) %> </div>",
     templateType: 'underscore',
     eventType: 'featureOver'
   }
