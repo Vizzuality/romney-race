@@ -7,7 +7,7 @@ layers.win = {
   active: false,
   visible: false,
   opacity: 0,
-  query: 'SELECT cartodb_id, romney_wins, county_name, state_name, ST_SIMPLIFY(the_geom_webmercator,0.0001) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
+  query: 'SELECT cartodb_id, romney_wins, county_name, state_name, ST_SIMPLIFY(the_geom_webmercator,0.01) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
   interactivity: "geometry, cartodb_id",
   __featureOver: function(ev,latlng,pos,data) {
     var polygon_style = {color: "#fff", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#333", clickable:false};
@@ -39,20 +39,6 @@ layers.win = {
     "#{{table_name}}[romney_wins='true'] {" +
     "polygon-fill:#BB2D3C;" +
     "}";
-    if(this.textName) {
-      styles += "#{{table_name}}::labels[zoom>=5][romney_wins='true'] {" +
-      "text-face-name:@font_reg;" +
-      'text-name:"['+this.textName+']";' +
-      "text-fill:#FFF;" +
-      "text-halo-fill:rgba(0,0,0,0.5);" +
-      "text-halo-radius:1;" +
-      "text-size:11;" +
-      "text-allow-overlap: false;" +
-      "polygon-opacity:0;" +
-      "text-label-position-tolerance: 10;" +
-      "text-min-distance: 10;" +
-      "}"
-    }
     return styles;
 
   },

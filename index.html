@@ -11,62 +11,10 @@
     <link href="css/app.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="css/fonts.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
-    <style>
-
-    </style>
 
     <!--[if IE]>
     <link href="/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
-
-    <script src="js/vendor/cdb.js/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/vendor/cdb.js/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/vendor/cdb.js/src/cartodb.js" type="text/javascript" charset="utf-8"></script>
-
-    <script src="js/vendor/cdb.js/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/vendor/cdb.js/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
-
-    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/layers/boundaries.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/layers/percentage.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/layers/win.js" type="text/javascript" charset="utf-8"></script>
-
-    <script type="text/javascript">
-      var mapConfig = {
-        title: "Romney race",
-        center: [40.044, -101.95],
-        bounding_box_sw: [20, -125],
-        bounding_box_ne: [ 55, -50],
-        zoom: 4,
-        maxZoom: 9,
-        minZoom: 4,
-        overlays: [],
-        layers: []
-     };
-      window.popup = new L.CartoDBPopup();
-
-      window.onload = function() {
-        cdb.load('js/vendor/cdb.js/src/', function() {
-
-          var vis = new Vis({el: $('#mapPercentage')});
-          window.vis = vis; // to play in console
-          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
-          vis.load(mapConfig);
-
-          var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
-          var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
-
-          layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
-          layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
-
-          window.romney.init(vis.map, "1");
-        });
-      }
-
-    </script>
-
   </head>
   <body>
     <div class="header">
@@ -116,5 +64,61 @@
     <div class="mapTabs">
       <div class="mapTab shown" id="mapPercentage"></div>
     </div>
+
+    <div class="footer">
+      <a href="http://cartodb.com"><img src="./img/cartologo.png" alt="cartodb"></img></a>
+    </div>
+
+    <script src="js/vendor/cdb.js/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cdb.js/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cdb.js/src/cartodb.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/vendor/cdb.js/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cdb.js/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/layers/boundaries.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/layers/percentage.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/layers/win.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/layers/countyNames.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+
+      var mapConfig = {
+        title: "Romney race",
+        center: [40.044, -101.95],
+        bounding_box_sw: [00, -180],
+        bounding_box_ne: [ 80, 0],
+        zoom: 4,
+        maxZoom: 9,
+        minZoom: 4,
+        zoomAnimation: false,
+        overlays: [],
+        layers: []
+     };
+      window.popup = new L.CartoDBPopup();
+
+      window.onload = function() {
+        cdb.load('js/vendor/cdb.js/src/', function() {
+          L.CartoDBLayer.prototype._addWadus = function() {};
+          var vis = new Vis({el: $('#mapPercentage')});
+          window.vis = vis; // to play in console
+          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
+          vis.load(mapConfig);
+
+          var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
+          var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
+
+          layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
+          layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
+
+          window.romney.init(vis.map, "1");
+        });
+      }
+
+    </script>
+
   </body>
 </html>

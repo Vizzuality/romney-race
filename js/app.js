@@ -1,4 +1,3 @@
-
 var romney = {
   minZoom: 4,
   maxZoom:9,
@@ -30,6 +29,7 @@ var romney = {
     this.$zoomOut = $('.zoom_out');
     this.$showNames = $('.show_names');
     this.bindButtons();
+
   },
   /**
   * Create the bindings between ui buttons and methods
@@ -58,6 +58,7 @@ var romney = {
     this.currentMap? this.currentMap = 0: this.currentMap = 1;
     map.layers.models[this.currentMap].activate();
     map.layers.models[2].trigger('change');
+    map.layers.models[3].trigger('change');
     this.selectCurrentTab();
     this.selectCurrentLegend();
   },
@@ -71,6 +72,7 @@ var romney = {
     this.currentMap = mapId;
     map.layers.models[this.currentMap].activate();
     map.layers.models[2].trigger('change');
+    map.layers.models[3].trigger('change');
     this.selectCurrentTab();
     this.selectCurrentLegend();
   },
@@ -112,25 +114,21 @@ var romney = {
   },
 
   setNamesOn: function() {
-    layers.win.textName = 'county_name';
-    layers.percentage.textName = 'county_name';
-    layers.win.tile_style = layers.win.__getTyleStyle()
-    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
-    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
-    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    var layerData = layers.countyNames;
+    this.namesCid = this.map.addLayer(Layers.create(layerData.type, this, layerData));
     this.$showNames.addClass('selected');
+
     this.selectMap(this.currentMap);
   },
 
   setNamesOff: function() {
-    layers.win.textName = undefined;
-    layers.percentage.textName = undefined;
-    layers.win.tile_style = layers.win.__getTyleStyle()
-    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
-    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
-    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
-    this.$showNames.removeClass('selected');
-    this.selectMap(this.currentMap);
+    if(this.namesCid) {
+      var namesLayer = this.map.getLayerByCid(this.namesCid);
+      this.map.removeLayer(namesLayer);
+      this.namesCid = undefined;
+      this.$showNames.removeClass('selected');
+      this.selectMap(this.currentMap);
+    }
   },
 
   toggleNames: function() {
