@@ -27,6 +27,7 @@ layers.percentage = {
       "#{{table_name}} {" +
       "line-color:#FFFFFF;" +
       "line-width:0;" +
+      "polygon-fill:#E5E5E5;" +
       "line-opacity:1;" +
       "polygon-opacity:1;" +
       "}" +
