@@ -26,6 +26,9 @@ var romney = {
       this.legends[$legend.attr('data-mapId')] = $legend;
     }
 
+    this.$zoomIn = $('.zoom_in');
+    this.$zoomOut = $('.zoom_out');
+    this.$showNames = $('.show_names');
     this.bindButtons();
   },
   /**
@@ -41,9 +44,9 @@ var romney = {
         self.selectMap($tab.attr('data-mapId'));
       });
     }
-    $('.zoom_in').on('click', this.zoom_in.bind(this));
-    $('.zoom_out').on('click', this.zoom_out.bind(this));
-    $('.show_names').on('click', this.toggleNames.bind(this))
+    this.$zoomIn.on('click', this.zoom_in.bind(this));
+    this.$zoomOut.on('click', this.zoom_out.bind(this));
+    this.$showNames.on('click', this.toggleNames.bind(this))
   },
   /**
   * Toggle the selected map
@@ -115,6 +118,7 @@ var romney = {
     this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
     layers.percentage.tile_style = layers.percentage.__getTyleStyle()
     this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.$showNames.addClass('selected');
     this.selectMap(this.currentMap);
   },
 
@@ -125,6 +129,7 @@ var romney = {
     this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
     layers.percentage.tile_style = layers.percentage.__getTyleStyle()
     this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.$showNames.removeClass('selected');
     this.selectMap(this.currentMap);
   },
 
