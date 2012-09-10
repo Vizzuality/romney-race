@@ -7,7 +7,7 @@ layers.win = {
   active: false,
   visible: false,
   opacity: 0,
-  query: 'SELECT cartodb_id, romney_wins, county_name, state_name, ST_SIMPLIFY(the_geom_webmercator,0.01) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
+  query: 'SELECT cartodb_id, romney_wins, county_name, state_name, ST_SIMPLIFY(the_geom_webmercator,0.1) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
   interactivity: "geometry, cartodb_id",
   __featureOver: function(ev,latlng,pos,data) {
     var polygon_style = {color: "#fff", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#333", clickable:false};

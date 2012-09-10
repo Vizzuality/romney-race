@@ -58,7 +58,9 @@ var romney = {
     this.currentMap? this.currentMap = 0: this.currentMap = 1;
     map.layers.models[this.currentMap].activate();
     map.layers.models[2].trigger('change');
-    map.layers.models[3].trigger('change');
+    if (map.layers.models.length == 4) {
+      map.layers.models[3].trigger('change');
+    }
     this.selectCurrentTab();
     this.selectCurrentLegend();
   },
@@ -72,7 +74,9 @@ var romney = {
     this.currentMap = mapId;
     map.layers.models[this.currentMap].activate();
     map.layers.models[2].trigger('change');
-    map.layers.models[3].trigger('change');
+    if (map.layers.models.length == 4) {
+      map.layers.models[3].trigger('change');
+    }
     this.selectCurrentTab();
     this.selectCurrentLegend();
   },

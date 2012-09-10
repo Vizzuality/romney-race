@@ -2,6 +2,7 @@ body {
   margin: 25px;
   color: #333;
   font-family: helvetica, arial;
+  min-width:600px;
 }
 
 a{
@@ -53,8 +54,32 @@ a{
   margin: 0 auto;
   padding: 0;
   width:100%;
-  max-width:800px;
-  height: 500px;
+  max-width:100%
+  height: 300px;
+}
+
+@media all and (min-width: 1000px) {
+  .mapTab {
+    height: 450px;
+  }
+}
+
+@media all and (min-width: 1300px) {
+  .mapTab {
+    height: 500px;
+  }
+}
+
+@media all and (min-width: 1500px) {
+  .mapTab {
+    height: 550px;
+  }
+}
+
+@media all and (min-width: 1700px) {
+  .mapTab {
+    height: 600px;
+  }
 }
 
 .mapTab.shown {
@@ -64,6 +89,7 @@ a{
 .subheader {
   display: inline-block;
   padding: 20px 0;
+  height: 30px;
   width: 100%;
   border-bottom: 1px solid #d4d0c8;
   background: #FFF;
@@ -133,6 +159,7 @@ a{
 
 .subheader .legends {
   float: right;
+  margin-top: 8px;
   display: inline-block;
 }
 

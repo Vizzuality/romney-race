@@ -6,7 +6,7 @@ layers.countyNames = {
   active: true,
   visible: true,
   opacity: 0.99,
-  query: 'SELECT cartodb_id, county_name, state_name, romney_percentage, ST_SIMPLIFY(the_geom_webmercator,0.01) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
+  query: 'SELECT cartodb_id, county_name, state_name, romney_percentage, ST_SIMPLIFY(the_geom_webmercator,1) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
   interactivity: "geometry, cartodb_id",
   textName: 'county_name',
   __getTyleStyle: function() {
