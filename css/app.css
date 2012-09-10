@@ -50,9 +50,10 @@ a{
 }
 
 .mapTab {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  width:800px;
+  width:100%;
+  max-width:800px;
   height: 500px;
 }
 
@@ -90,6 +91,15 @@ a{
 
 .subheader #zoom .zoom_in {
   left:-1px;
+  border-radius: 0 3px 3px 0;
+}
+
+.subheader #zoom .zoom_in:hover, .subheader #zoom .zoom_out:hover {
+  background-color: #e1e1e1;
+}
+
+.subheader #zoom .zoom_out {
+  border-radius: 3px 0 0 3px;
 }
 
 .subheader #zoom .show_names {
@@ -97,6 +107,28 @@ a{
   font-family: 'times-roman', 'times new roman' ;
   font-size: 21px;
   padding: 3px 5px 7px;
+  border-radius: 3px;
+  -webkit-transition: background-color, color 300ms linear;
+  -moz-transition: background-color, color 300ms linear;
+  -o-transition: background-color, color 300ms linear;
+  -ms-transition: background-color, color 300ms linear;
+  transition: background-color, color 300ms linear;
+}
+
+.subheader #zoom .show_names:hover {
+  color: #666;
+  background-color: #CCC;
+}
+
+.subheader #zoom .show_names.selected {
+  color: #e1e1e1;
+  background-color: #999;
+  border-color: #666;
+}
+
+.subheader #zoom .show_names.selected:hover {
+  color: #FFF;
+  background-color: #666;
 }
 
 .subheader .legends {
@@ -165,8 +197,6 @@ a{
 
 .infowindow {
   position: absolute;
-  bottom: 218px;
-  left: 763px;
   display: block;
   padding: 5px;
   max-width: 200px;

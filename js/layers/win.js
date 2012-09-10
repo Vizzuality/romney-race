@@ -9,7 +9,7 @@ layers.win = {
   opacity: 0,
   query: 'SELECT cartodb_id, romney_wins, county_name, state_name, ST_SIMPLIFY(the_geom_webmercator,0.0001) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
   interactivity: "geometry, cartodb_id",
-  featureOver: function(ev,latlng,pos,data) {
+  __featureOver: function(ev,latlng,pos,data) {
     var polygon_style = {color: "#fff", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#333", clickable:false};
     document.body.style.cursor = "pointer";
     if (this.polygon) {
@@ -22,7 +22,7 @@ layers.win = {
     }).addTo(vis.mapView.map_leaflet);
   },
   textName: null,
-  getTyleStyle: function() {
+  __getTyleStyle: function() {
     var styles = '@font_reg:"DejaVu Sans Book";' +
     "#{{table_name}} {" +
     "line-color:#594;" +
@@ -62,4 +62,4 @@ layers.win = {
     eventType: 'featureOver'
   },
 };
-layers.win.tile_style = layers.win.getTyleStyle();
+layers.win.tile_style = layers.win.__getTyleStyle();
