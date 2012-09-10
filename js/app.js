@@ -111,9 +111,9 @@ var romney = {
   setNamesOn: function() {
     layers.win.textName = 'county_name';
     layers.percentage.textName = 'county_name';
-    layers.win.tile_style = layers.win.getTyleStyle()
+    layers.win.tile_style = layers.win.__getTyleStyle()
     this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
-    layers.percentage.tile_style = layers.percentage.getTyleStyle()
+    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
     this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
     this.selectMap(this.currentMap);
   },
@@ -121,9 +121,9 @@ var romney = {
   setNamesOff: function() {
     layers.win.textName = undefined;
     layers.percentage.textName = undefined;
-    layers.win.tile_style = layers.win.getTyleStyle()
+    layers.win.tile_style = layers.win.__getTyleStyle()
     this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
-    layers.percentage.tile_style = layers.percentage.getTyleStyle()
+    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
     this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
     this.selectMap(this.currentMap);
   },

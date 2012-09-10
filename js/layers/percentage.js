@@ -8,7 +8,7 @@ layers.percentage = {
   opacity: 0.99,
   query: 'SELECT cartodb_id, county_name, state_name, romney_percentage, ST_SIMPLIFY(the_geom_webmercator,0.0001) as the_geom_webmercator,ST_ASGEOJSON(ST_SIMPLIFY(the_geom,0.0001)) as geometry FROM {{table_name}}',
   interactivity: "geometry, cartodb_id",
-  featureOver: function(ev,latlng,pos,data) {
+  __featureOver: function(ev,latlng,pos,data) {
     var polygon_style = {color: "#fff", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#333", clickable:false};
     document.body.style.cursor = "pointer";
     if (this.polygon) {
@@ -22,7 +22,7 @@ layers.percentage = {
 
   },
   textName: undefined,
-  getTyleStyle: function() {
+  __getTyleStyle: function() {
     var styles = '@font_reg:"DejaVu Sans Book";' +
       "#{{table_name}} {" +
       "line-color:#FFFFFF;" +
@@ -62,8 +62,9 @@ layers.percentage = {
       { name: 'state_name', title: true },
       {name: 'romney_percentage', title: true}
     ],
-    template: "<div>{{#content.fields}} <div class='{{#title}}{{title}}{{/title}}' >{{value}}</div> {{/content.fields}}</div>",
+    template: "<div><% _.each(content.fields, function(f){ if(f.value != undefined){ %> <div class='<%= f.title %>'><%= f.value %></div><%} }) %></div>",
+    templateType: 'underscore',
     eventType: 'featureOver'
   }
 }
-layers.percentage.tile_style = layers.percentage.getTyleStyle();
+layers.percentage.tile_style = layers.percentage.__getTyleStyle();
