@@ -113,6 +113,19 @@
 
           layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
           layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
+          layerPercentage.bind('featureOut', function() {
+            var infowindows = vis.mapView.getInfoWindows();
+            for(var i in infowindows) {
+              infowindows[i].model.set({"visibility": false});
+            };
+            for(var l in vis.mapView.layers) {
+              var layerView = vis.mapView.layers[l];
+              var polygon = layerView.polygon;
+              if(polygon) {
+                vis.mapView.map_leaflet.removeLayer(polygon);
+              }
+            };
+          });
 
           window.romney.init(vis.map, "1");
         });
