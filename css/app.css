@@ -251,9 +251,23 @@ a{
 
 .footer {
   border-top: 1px solid #CCC;
-  padding-top: 1em;
+
 }
 
 .leaflet-control-container {
   opacity: 0.4;
+  border:0;
+}
+
+.footer .logo {
+  margin-top: 0.5em;
+  display: inline-block;
+}
+
+.footer .sources {
+  color: #999;
+  font-size:11px;
+  float: right;
+  display: inline-block;
+  margin-top: 0.3em;
 }
