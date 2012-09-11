@@ -31,7 +31,7 @@
         <a class="zoom_out">-</a>
         <a class="zoom_in">+</a>
 
-        <a class="show_names">A</a>
+        <a class="show_names selected">A</a>
       </div>
       <div class="legends">
           <div class="legend selected" data-mapId=1>
@@ -105,7 +105,7 @@
           L.CartoDBLayer.prototype._addWadus = function() {};
           var vis = new Vis({el: $('#mapPercentage')});
           window.vis = vis; // to play in console
-          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
+          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries, layers.countyNames]
           vis.load(mapConfig);
 
           var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);

@@ -10,7 +10,7 @@ var romney = {
     this.map = map;
     this.currentMap = currentMap;
     this.switchMap = this.switchMap.bind(this);
-
+    this.namesCid = this.map.layers.models[3];
     // we store the tabs & leyends references to avoid future DOM lookups
     this.tabs = []
     var tabs = $('.tab');
@@ -136,9 +136,8 @@ var romney = {
   },
 
   toggleNames: function() {
-    this.namesOn?
+    this.namesCid?
       this.setNamesOff():
       this.setNamesOn();
-    this.namesOn = !this.namesOn;
   }
 }
