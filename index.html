@@ -62,7 +62,11 @@
       </div>
     </div>
     <div class="mapTabs">
-      <div class="mapTab shown" id="mapPercentage"></div>
+      <div class="mapTab shown" id="mapPercentage">
+        <div class="loader">
+          <img src="https://raw.github.com/CartoDB/cartodb20/develop/app/assets/images/layout/loader.gif"></img>
+        </div>
+      </div>
     </div>
 
     <div class="footer">
@@ -90,7 +94,7 @@
 
       var mapConfig = {
         title: "Romney race",
-        center: [40.044, -101.95],
+        center: [35.044, -101.95],
         bounding_box_sw: [00, -180],
         bounding_box_ne: [ 80, 0],
         zoom: 4,
@@ -103,7 +107,9 @@
       window.popup = new L.CartoDBPopup();
 
       window.onload = function() {
+
         cdb.load('https://raw.github.com/CartoDB/cdb.js/develop/src/', function() {
+          $('.loader').slideUp();
           L.CartoDBLayer.prototype._addWadus = function() {};
           var vis = new Vis({el: $('#mapPercentage')});
           window.vis = vis; // to play in console
