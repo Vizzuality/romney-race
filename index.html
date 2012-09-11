@@ -105,7 +105,7 @@
           L.CartoDBLayer.prototype._addWadus = function() {};
           var vis = new Vis({el: $('#mapPercentage')});
           window.vis = vis; // to play in console
-          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries, layers.countyNames]
+          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
           vis.load(mapConfig);
 
           var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);

@@ -21,7 +21,7 @@ layers.win = {
       }
     }).addTo(vis.mapView.map_leaflet);
   },
-  textName: null,
+  textName: 'county_name',
   __getTyleStyle: function() {
     var styles = '@font_reg:"DejaVu Sans Book";' +
     "#{{table_name}} {" +
@@ -39,6 +39,20 @@ layers.win = {
     "#{{table_name}}[romney_wins='true'] {" +
     "polygon-fill:#BB2D3C;" +
     "}";
+    if(this.textName) {
+      styles += "#{{table_name}}::labels[zoom>=5][romney_wins='true'] {" +
+      "text-face-name:@font_reg;" +
+      'text-name:"['+this.textName+']";' +
+      "text-fill:#FFF;" +
+      "text-halo-fill:rgba(0,0,0,0.5);" +
+      "text-halo-radius:1;" +
+      "text-size:11;" +
+      "text-allow-overlap: false;" +
+      "polygon-opacity:0;" +
+      "text-label-position-tolerance: 10;" +
+      "text-min-distance: 10;" +
+      "}"
+    }
     return styles;
 
   },

@@ -10,7 +10,9 @@ var romney = {
     this.map = map;
     this.currentMap = currentMap;
     this.switchMap = this.switchMap.bind(this);
-    this.namesCid = this.map.layers.models[3];
+    // this.namesCid = this.map.layers.models[3];
+    this.namesOn = true;
+
     // we store the tabs & leyends references to avoid future DOM lookups
     this.tabs = []
     var tabs = $('.tab');
@@ -117,27 +119,56 @@ var romney = {
     }
   },
 
-  setNamesOn: function() {
-    var layerData = layers.countyNames;
-    this.namesCid = this.map.addLayer(Layers.create(layerData.type, this, layerData));
-    this.$showNames.addClass('selected');
+  // setNamesOn: function() {
+  //   var layerData = layers.countyNames;
+  //   this.namesCid = this.map.addLayer(Layers.create(layerData.type, this, layerData));
+  //   this.$showNames.addClass('selected');
 
+  //   this.selectMap(this.currentMap);
+  // },
+
+  // setNamesOff: function() {
+  //   if(this.namesCid) {
+  //     var namesLayer = this.map.getLayerByCid(this.namesCid);
+  //     this.map.removeLayer(namesLayer);
+  //     this.namesCid = undefined;
+  //     this.$showNames.removeClass('selected');
+  //     this.selectMap(this.currentMap);
+  //   }
+  // },
+
+  // toggleNames: function() {
+  //   this.namesCid?
+  //     this.setNamesOff():
+  //     this.setNamesOn();
+  // }
+
+  setNamesOn: function() {
+    layers.win.textName = 'county_name';
+    layers.percentage.textName = 'county_name';
+    layers.win.tile_style = layers.win.__getTyleStyle()
+    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
+    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
+    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.$showNames.addClass('selected');
     this.selectMap(this.currentMap);
   },
 
   setNamesOff: function() {
-    if(this.namesCid) {
-      var namesLayer = this.map.getLayerByCid(this.namesCid);
-      this.map.removeLayer(namesLayer);
-      this.namesCid = undefined;
-      this.$showNames.removeClass('selected');
-      this.selectMap(this.currentMap);
-    }
+    layers.win.textName = undefined;
+    layers.percentage.textName = undefined;
+    layers.win.tile_style = layers.win.__getTyleStyle()
+    this.map.layers.models[0].attributes.tile_style = layers.win.tile_style;
+    layers.percentage.tile_style = layers.percentage.__getTyleStyle()
+    this.map.layers.models[1].attributes.tile_style = layers.percentage.tile_style;
+    this.$showNames.removeClass('selected');
+    this.selectMap(this.currentMap);
   },
 
   toggleNames: function() {
-    this.namesCid?
+    this.namesOn?
       this.setNamesOff():
       this.setNamesOn();
+    this.namesOn = !this.namesOn;
   }
 }
