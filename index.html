@@ -71,7 +71,15 @@
     </div>
 
 
-    <script src="js/v.js"></script>
+     <script src="https://raw.github.com/CartoDB/cdb.js/develop/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.github.com/CartoDB/cdb.js/develop/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.github.com/CartoDB/cdb.js/develop/src/cartodb.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="https://raw.github.com/CartoDB/cdb.js/develop/vendor/leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://raw.github.com/CartoDB/cdb.js/develop/vendor/cartodb-leaflet.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/cartodb-popup-min.js" type="text/javascript" charset="utf-8"></script>
+
     <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/layers/boundaries.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/layers/percentage.js" type="text/javascript" charset="utf-8"></script>
@@ -95,7 +103,7 @@
       window.popup = new L.CartoDBPopup();
 
       window.onload = function() {
-        cdb.load('js/vendor/cdb.js/src/', function() {
+        cdb.load('https://raw.github.com/CartoDB/cdb.js/develop/src/', function() {
           L.CartoDBLayer.prototype._addWadus = function() {};
           var vis = new Vis({el: $('#mapPercentage')});
           window.vis = vis; // to play in console
