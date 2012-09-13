@@ -65,7 +65,11 @@
       </div>
     </div>
     <div class="mapTabs">
-      <div class="mapTab shown" id="mapPercentage"></div>
+      <div class="mapTab shown" id="mapPercentage">
+        <div class="loader">
+          <img src="https://raw.github.com/CartoDB/cartodb20/develop/app/assets/images/layout/loader.gif"></img>
+        </div>
+      </div>
     </div>
 
     <div class="footer">
@@ -98,14 +102,16 @@
      };
       window.onload = function() {
         cdb.load('js/vendor/cdb.js/src/', function() {
-          L.CartoDBLayer.prototype._addWadus = function() {};
+          $('.loader').slideUp();
           var vis = new Vis({el: $('#mapPercentage')});
-          window.vis = vis; // to play in console
           mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
           vis.load(mapConfig);
 
           var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
           var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
+          layerWin.vis = vis;
+          layerPercentage.vis = vis;
+
 
           layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
           layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
