@@ -17,8 +17,11 @@
     <![endif]-->
   </head>
   <body>
+    <h1>Romney's primary results</h1>
     <div class="header">
-      <h1>Romney race</h1>
+      <div class="intro">
+        How did Mitt Romney really do in the Republican primaries? This map shows the percentage of his vote in each county across the US, where available.
+      </div>
       <a class="tab" id="winTab" data-mapId=0>
         Where he won
       </a>
@@ -83,9 +86,9 @@
 
       var mapConfig = {
         title: "Romney race",
-        center: [35.044, -101.95],
-        bounding_box_sw: [00, -180],
-        bounding_box_ne: [ 80, 0],
+        center: [37.5, -101],
+        bounding_box_sw: [20, -140],
+        bounding_box_ne: [ 60, 40],
         zoom: 4,
         maxZoom: 9,
         minZoom: 4,
@@ -93,37 +96,39 @@
         overlays: [],
         layers: []
      };
-      window.popup = new L.CartoDBPopup();
-
       window.onload = function() {
 
-        $('.loader').slideUp();
-        L.CartoDBLayer.prototype._addWadus = function() {};
-        var vis = new Vis({el: $('#mapPercentage')});
-        window.vis = vis; // to play in console
-        mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
-        vis.load(mapConfig);
+        cdb.load('js/vendor/cdb.js/src/', function() {
+          $('.loader').slideUp();
+          var vis = new Vis({el: $('#mapPercentage')});
+          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
+          vis.load(mapConfig);
 
-        var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
-        var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
+          var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
+          var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
+          layerWin.vis = vis;
+          layerPercentage.vis = vis;
 
-        layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
-        layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
-        layerPercentage.bind('featureOut', function() {
-          var infowindows = vis.mapView.getInfoWindows();
-          for(var i in infowindows) {
-            infowindows[i].model.set({"visibility": false});
-          };
-          for(var l in vis.mapView.layers) {
-            var layerView = vis.mapView.layers[l];
-            var polygon = layerView.polygon;
-            if(polygon) {
-              vis.mapView.map_leaflet.removeLayer(polygon);
-            }
-          };
+
+          layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
+          layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
+          layerPercentage.bind('featureOut', function() {
+            var infowindows = vis.mapView.getInfoWindows();
+            for(var i in infowindows) {
+              infowindows[i].model.set({"visibility": false});
+            };
+            for(var l in vis.mapView.layers) {
+              var layerView = vis.mapView.layers[l];
+              var polygon = layerView.polygon;
+              if(polygon) {
+                vis.mapView.map_leaflet.removeLayer(polygon);
+              }
+            };
+          });
+
+          window.romney.init(vis.map, "1");
         });
 
-        window.romney.init(vis.map, "1");
       }
 
     </script>

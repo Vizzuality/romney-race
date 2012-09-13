@@ -13,13 +13,13 @@ layers.win = {
     var polygon_style = {color: "#fff", weight: 2, opacity:1, fillOpacity: 1, fillColor:"#333", clickable:false};
     document.body.style.cursor = "pointer";
     if (this.polygon) {
-      vis.mapView.map_leaflet.removeLayer(this.polygon);
+      this.vis.mapView.map_leaflet.removeLayer(this.polygon);
     }
     this.polygon = new L.GeoJSON(JSON.parse(data.geometry), {
       style: function (feature) {
         return polygon_style;
       }
-    }).addTo(vis.mapView.map_leaflet);
+    }).addTo(this.vis.mapView.map_leaflet);
   },
   textName: 'county_name',
   __getTyleStyle: function() {
