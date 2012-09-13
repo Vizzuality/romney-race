@@ -303,3 +303,9 @@ h1 {
 .leaflet-control-attribution {
   opacity: 0;
 }
+
+.loader {
+  padding-top:2em;
+  width: 100%;
+  text-align:center;
+}
