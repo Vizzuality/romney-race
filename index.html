@@ -17,8 +17,11 @@
     <![endif]-->
   </head>
   <body>
+    <h1>Romney's primary results</h1>
     <div class="header">
-      <h1>Romney race</h1>
+      <div class="intro">
+        How did Mitt Romney really do in the Republican primaries? This map shows the percentage of his vote in each county across the US, where available.
+      </div>
       <a class="tab" id="winTab" data-mapId=0>
         Where he won
       </a>
@@ -83,9 +86,9 @@
 
       var mapConfig = {
         title: "Romney race",
-        center: [40.044, -101.95],
-        bounding_box_sw: [00, -180],
-        bounding_box_ne: [ 80, 0],
+        center: [37.5, -101],
+        bounding_box_sw: [20, -140],
+        bounding_box_ne: [ 60, 40],
         zoom: 4,
         maxZoom: 9,
         minZoom: 4,
@@ -93,8 +96,6 @@
         overlays: [],
         layers: []
      };
-      window.popup = new L.CartoDBPopup();
-
       window.onload = function() {
         cdb.load('js/vendor/cdb.js/src/', function() {
           L.CartoDBLayer.prototype._addWadus = function() {};
