@@ -98,36 +98,37 @@
      };
       window.onload = function() {
 
-        cdb.load('js/vendor/cdb.js/src/', function() {
-          $('.loader').slideUp();
-          var vis = new Vis({el: $('#mapPercentage')});
-          mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
-          vis.load(mapConfig);
 
-          var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
-          var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
-          layerWin.vis = vis;
-          layerPercentage.vis = vis;
+        $('.loader').slideUp();
+        L.CartoDBLayer.prototype._addWadus = function() {};
+        var vis = new Vis({el: $('#mapPercentage')});
+        window.vis = vis; // to play in console
+        mapConfig.layers = [ layers.win, layers.percentage, layers.boundaries]
+        vis.load(mapConfig);
+
+        var layerPercentage = vis.mapView.getLayerByCid(vis.map.layers.models[1].cid);
+        var layerWin = vis.mapView.getLayerByCid(vis.map.layers.models[0].cid);
+        layerWin.vis = vis;
+        layerPercentage.vis = vis;
 
 
-          layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
-          layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
-          layerPercentage.bind('featureOut', function() {
-            var infowindows = vis.mapView.getInfoWindows();
-            for(var i in infowindows) {
-              infowindows[i].model.set({"visibility": false});
-            };
-            for(var l in vis.mapView.layers) {
-              var layerView = vis.mapView.layers[l];
-              var polygon = layerView.polygon;
-              if(polygon) {
-                vis.mapView.map_leaflet.removeLayer(polygon);
-              }
-            };
-          });
-
-          window.romney.init(vis.map, "1");
+        layerPercentage.bind('featureOver', layers.percentage.__featureOver, layerPercentage);
+        layerWin.bind('featureOver', layers.percentage.__featureOver, layerWin);
+        layerPercentage.bind('featureOut', function() {
+          var infowindows = vis.mapView.getInfoWindows();
+          for(var i in infowindows) {
+            infowindows[i].model.set({"visibility": false});
+          };
+          for(var l in vis.mapView.layers) {
+            var layerView = vis.mapView.layers[l];
+            var polygon = layerView.polygon;
+            if(polygon) {
+              vis.mapView.map_leaflet.removeLayer(polygon);
+            }
+          };
         });
+
+        window.romney.init(vis.map, "1");
 
       }
 
