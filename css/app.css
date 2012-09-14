@@ -1,11 +1,6 @@
 body {
-<<<<<<< HEAD
-  margin: 25px;
-  min-width:600px;
-=======
   margin: 25px 0;
   min-width:775px;
->>>>>>> master
   color: #333;
   font-family: helvetica, arial;
 }
